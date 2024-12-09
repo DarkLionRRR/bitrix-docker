@@ -1,0 +1,26 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./.docker/nginx_php_fpm/Dockerfile
+    ports:
+      - "1488:80"
+    volumes:
+      - ./sites:/var/www/html
+    restart: unless-stopped
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb-container
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: docker_bitrix
+      MYSQL_USER: bitrix
+      MYSQL_PASSWORD: 123
+    ports:
+      - "3248:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+volumes:
+  mariadb_data:
