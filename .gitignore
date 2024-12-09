@@ -1,4 +1,4 @@
-sites/
 .DS_Store
 .vscode
 *.tar.gz
+sites/*
